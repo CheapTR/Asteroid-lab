@@ -7,6 +7,7 @@ int flockSize = 20;
 
 int numScore = 0;
 int numLives = 3;
+int numLevel = 1;
 
 int cooldown = 0;
 
@@ -15,6 +16,7 @@ Mover toRemove;
 
 Text score;
 Text lives;
+Text level;
 
 import processing.sound.*;
 
@@ -32,6 +34,7 @@ void setup() {
   
   score = new Text(0,0);
   lives = new Text(displayWidth -100, 0);
+  level = new Text(displayWidth -100, 30);
   
 }
 
@@ -121,6 +124,8 @@ void render() {
   
   score.display("Score : ", numScore);
   lives.display("Lives : ", numLives);
+  level.display("Level : ", numLevel);
+  
   
 }
 
@@ -192,6 +197,7 @@ boolean collisionCheckProjectile(GraphicObject g, GraphicObject p, float size) {
     
     if(flock.size()==0)
     {
+      numLevel++;
       flockSize = flockSize + 5;
       reset();
     }
@@ -206,17 +212,18 @@ boolean collisionCheckVaisseau(GraphicObject g, GraphicObject m, float msize, fl
   {
     if(numLives==0)
     {
-      flockSize=20;
-      numLives=3;
-      numScore=0;
-      cooldown=0;
+      flockSize = 20;
+      numLives = 3;
+      numScore = 0;
+      numLevel = 0;
+      cooldown = 0;
       reset();
     }
     else
     {
       if (cooldown <= 0) {
         numLives--;
-        cooldown =2000;
+        cooldown = 2000;
         path = sketchPath(audioName);
     file = new SoundFile(this, path);
     file.play();
