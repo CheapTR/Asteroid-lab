@@ -24,9 +24,9 @@ SoundFile file;
   String path;
 
 void setup() {
- // fullScreen(P2D);
+  fullScreen(P2D);
   
-    size(800, 600);
+    //size(800, 600);
   
   reset();
   
